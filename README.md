@@ -1,4 +1,4 @@
-Comparte Ride
+Cinema API
 =============
 
-Group-bounded, invite-only, carpooling platform
+A API for a cinema
