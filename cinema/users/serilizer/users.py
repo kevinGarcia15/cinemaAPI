@@ -5,6 +5,7 @@ from django.contrib.auth import password_validation, authenticate
 from django.core.mail import EmailMultiAlternatives
 from django.utils import timezone
 
+
 #django REST framaework
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
@@ -17,7 +18,7 @@ from cinema.users.models.users import User
 import jwt
 from datetime import timedelta
 
-class UserModelSerializer(serializers.Serializer):
+class UserModelSerializer(serializers.ModelSerializer):
     """
     User model serializer
     """

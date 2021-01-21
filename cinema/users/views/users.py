@@ -12,6 +12,7 @@ from cinema.users.serilizer import(
         UserLoginSerializer
 ) 
 #permissions
+from rest_framework.permissions import (AllowAny)
 
 #models 
 from cinema.users.models import User
@@ -20,9 +21,19 @@ class UserViewSet(viewsets.GenericViewSet):
     """
     Class used for Signup and login user
     """
-    queryset = User.objects.filter(is_active=True, is_admin=False)
+    queryset = User.objects.all()
+
     serializer_class = UserModelSerializer
     lookup_field = 'username'
+
+    def get_permissions(self):
+        """
+        Assign permitions based on action(rewrite the metod)
+        """
+        if self.action in ['signup', 'login']:
+            permissions = [AllowAny]
+        return [permission() for permission in permissions]
+
 
     @action(detail=False, methods=['post'])
     def signup(self, request):
