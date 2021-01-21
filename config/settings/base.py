@@ -47,6 +47,8 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'cinema.users.apps.UsersAppConfig',
+    'cinema.movies.apps.MoviesAppConfig',
+
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
