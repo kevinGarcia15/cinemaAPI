@@ -1,0 +1,18 @@
+sudo docker-compose -f local.yml run --rm --service-port django
+sudo docker rm -f cinemaapi_django_1 #matar django
+sudo docker-compose -f local.yml run --rm django python manage.py migrate
+sudo docker-compose -f local.yml run --rm django python manage.py makemigrations
+sudo docker-compose -f local.yml run --rm django python manage.py shell_plus
+
+
+Regenerar base de datos y migraciones
+#detener posgres
+sudo docker rm -f <posgres>
+sudo docker volume ls
+sudo docker volume rm <id del volume de posgres>
+sudo docker-compose -f local.yml run --rm django python manage.py makemigrations
+sudo docker-compose -f local.yml run --rm django python manage.py migrate
+sudo docker-compose -f local.yml run --rm --service-port django
+sudo docker-compose -f local.yml run --rm django python manage.py createsuperuser
+
+
