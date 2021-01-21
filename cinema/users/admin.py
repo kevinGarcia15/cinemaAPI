@@ -23,6 +23,4 @@ class CustomUserAdmin(UserAdmin):
         queryset.update(is_admin=True)
     make_admin.short_description = 'Makeing a user Admin'
 
-
-#recordar registrar nuestros modelos 
 admin.site.register(User, CustomUserAdmin)

@@ -41,6 +41,9 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters'
 ]
 LOCAL_APPS = [
     'cinema.users.apps.UsersAppConfig',
@@ -69,6 +72,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = "users.User" 
 
 # Middlewares
 MIDDLEWARE = [
@@ -152,4 +157,14 @@ CELERYD_TASK_TIME_LIMIT = 5 * 60
 CELERYD_TASK_SOFT_TIME_LIMIT = 60
 
 
-AUTH_USER_MODEL = "users.User" 
+#django rest framework
+REST_FRAMEWORK={
+    'DEFAULT_RENDERER_CLASSES':(
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE':3,
+}
