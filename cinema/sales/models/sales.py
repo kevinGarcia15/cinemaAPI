@@ -11,7 +11,6 @@ class Sales(CinemaModel):
     Here is created the model sales ticket for join to watch a movie
     """
 
-    movie = models.ForeignKey("movies.Movie", on_delete=models.CASCADE)
     client = models.ForeignKey("users.User", on_delete=models.CASCADE)
     category = models.ForeignKey("movies.Category", on_delete=models.CASCADE, null=True)
 
@@ -21,8 +20,8 @@ class Sales(CinemaModel):
 
     def __str__(self):
         """Return summary."""
-        return 'Movie: {} | Schedule: {} | Room: {} | Quantity: {} ticket(s) | category: {}'.format(
-            self.movie.title,
+        return 'Movie_id: {} | Schedule: {} | Room: {} | Quantity: {} ticket(s) | category: {}'.format(
+            self.category.movie,
             self.schedule,
             self.room,
             self.quantity,

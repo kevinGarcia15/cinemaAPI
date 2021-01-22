@@ -7,9 +7,10 @@ sudo docker-compose -f local.yml run --rm django python manage.py shell_plus
 
 Regenerar base de datos y migraciones
 #detener posgres
-sudo docker rm -f <posgres>
+sudo docker rm -f cinemaapi_postgres_1
 sudo docker volume ls
-sudo docker volume rm <id del volume de posgres>
+#borrar volumen de postgres
+sudo docker volume rm cinemaapi_local_postgres_data
 sudo docker-compose -f local.yml run --rm django python manage.py makemigrations
 sudo docker-compose -f local.yml run --rm django python manage.py migrate
 sudo docker-compose -f local.yml run --rm --service-port django

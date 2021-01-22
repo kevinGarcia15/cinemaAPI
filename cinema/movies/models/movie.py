@@ -13,7 +13,7 @@ class Movie(CinemaModel):
     character of a muvie like a title, year launch etc.
     """
 
-    title = models.CharField("title", max_length=100)
+    title = models.CharField("title", max_length=100,unique=True)
     year_of_launch =  models.PositiveIntegerField(
         validators=[
             MinValueValidator(1990)
@@ -29,8 +29,6 @@ class Movie(CinemaModel):
     duration = models.PositiveIntegerField()
     rating = models.IntegerField(default=1)
     trama = models.TextField(blank=True)
-
-    category = models.ForeignKey('movies.Category', on_delete=models.CASCADE)
 
     def __str__(self):
         """Return summary."""
