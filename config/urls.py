@@ -11,5 +11,6 @@ urlpatterns = [
 
     path('', include(('cinema.users.urls', 'users'), namespace='users')),
     path('', include(('cinema.movies.urls', 'movies'), namespace='movies')),
+    path('', include(('cinema.sales.urls', 'sales'), namespace='sales')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
