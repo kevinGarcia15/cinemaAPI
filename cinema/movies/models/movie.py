@@ -29,6 +29,7 @@ class Movie(CinemaModel):
     duration = models.PositiveIntegerField()
     rating = models.IntegerField(default=1)
     trama = models.TextField(blank=True)
+    total_sales = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         """Return summary."""

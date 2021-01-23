@@ -14,7 +14,7 @@ class MoviesModelSerializer(serializers.ModelSerializer):
     """
     Movies Model Serializer
     """
-
+     
     class Meta:
         """
         Meta class
@@ -26,6 +26,23 @@ class MoviesModelSerializer(serializers.ModelSerializer):
             'picture', 'language', 'duration',
             'rating', 'trama'
         )
+
+class TotalSaleMoviesModelSerializer(serializers.ModelSerializer):
+    """
+    Movies Model Serializer
+    """
+     
+    class Meta:
+        """
+        Meta class
+        """
+        model = Movie
+        
+        fields = (
+            'title', 'year_of_launch',
+            'rating', 'total_sales'
+        )
+
 
 class MovieCreateSerializer(serializers.Serializer):
     """

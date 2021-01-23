@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 
 # Serializers
 from cinema.sales.serializer import SalesModelSerializer,SalesCreateSerializer
+from cinema.movies.serializer import MoviesModelSerializer,TotalSaleMoviesModelSerializer
 # Filters
 from rest_framework.filters import SearchFilter, OrderingFilter
 
@@ -27,8 +28,8 @@ class SalesViewSet(mixins.ListModelMixin,
     """Sales view set."""
 
     serializer_class = SalesModelSerializer
-    queryset = Sales.objects.all()
-
+    queryset = Sales.objects.all() 
+    
     def get_permissions(self):
         """
         Asign permisions based on actions
@@ -39,6 +40,8 @@ class SalesViewSet(mixins.ListModelMixin,
     def create(self, request):
         """
         Create a Sale ticket
+
+        the user can buy a ticket for watch a movie
         """
         serializer = SalesCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -52,6 +55,18 @@ class SalesViewSet(mixins.ListModelMixin,
             room=request.data['room'],
             schedule=request.data['schedule'] 
         )
+
+        #adds what has total_sales to quantity and saves it in partial_sales, 
+        #then assigns it back to total_sales
+        partial_sales = movie.total_sales+request.data['quantity']
+        movie.total_sales = partial_sales
+        movie.save()
         data = SalesModelSerializer(sales).data
 
-        return Response(data, status=status.HTTP_201_CREATED)    
+        return Response(data, status=status.HTTP_201_CREATED)  
+
+class ReportersViewSet(viewsets.GenericViewSet,mixins.ListModelMixin):
+    """reporters like total movies, avg child and adults"""
+
+    serializer_class = TotalSaleMoviesModelSerializer
+    queryset = Movie.objects.all()

@@ -19,6 +19,7 @@ class SalesModelSerializer(serializers.ModelSerializer):
     """
     category = CategoryModelSerializer(read_only=True)
     client = UserModelSerializer(read_only=True)
+    lookup_field = 'id'  
 
     class Meta:
         """
